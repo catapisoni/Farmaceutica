@@ -19,7 +19,7 @@ namespace Farmaceutica
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

@@ -61,6 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datos\HelperDB.cs" />
+    <Compile Include="Datos\Implementacion\DaoFactura.cs" />
+    <Compile Include="Datos\Interfaz\IDaoFactura.cs" />
+    <Compile Include="Datos\Parametro.cs" />
     <Compile Include="Dominio\Barrios.cs" />
     <Compile Include="Dominio\Clientes.cs" />
     <Compile Include="Dominio\CondicionIva.cs" />

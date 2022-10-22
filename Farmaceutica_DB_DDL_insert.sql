@@ -1392,6 +1392,201 @@ VALUES (2500, 41, 17,2, 10, 3000, 23004, '30-10-2024')
 
 
 
+--Consulta 1
+select top 3 p.id_producto 'Codigo',
+nombre_comercial 'Nombre Producto',
+cod_barras 'Codigo de Barras',
+sum(precio_venta*cantidad) 'Importe Total',
+tp.descripcion 'Tipo de Producto',
+nom_sucursal 'Sucursal'
+from FACTURAS f
+join DETALLES_FACTURA df on df.id_factura=f.id_factura
+join SUCURSALES s on s.Id_Sucursal=f.id_sucursal
+join PRODUCTOS p on p.id_producto=df.id_producto
+join tipos_productos tp on tp.id_tipo_producto=p.id_tipo_producto
+where DATEDIFF(month,fecha_factura,getdate())<=2
+group by p.id_producto,nom_sucursal,nombre_comercial,cod_barras,tp.descripcion
+order by 1
 
+--Consulta 2
+select top 1 e.id_empleado 'Codigo Empleado',
+nombre+','+apellido 'Empleado/a',
+nom_sucursaL 'Sucursal',
+sum(df.precio_venta*cantidad) 'Total Facturado',
+sum(df.precio_venta*cantidad)/100 'Premio', 
+'Enero-Junio' Semestre
+from EMPLEADOS e
+join FACTURAS f on f.id_empleado=e.id_empleado
+join DETALLES_FACTURA df on df.id_factura=f.id_factura
+join SUCURSALES s on s.Id_Sucursal=f.id_sucursal
+join PERSONAS p on p.id_persona=e.id_persona
+where month(fecha_factura) in (1,2,3,4,5,6)
+group by e.id_empleado,nombre+','+apellido,nom_sucursaL
+union
+select top 1 e.id_empleado 'Codigo Empleado',
+nombre+','+apellido 'Empleado/a',
+nom_sucursaL 'Sucursal',
+sum(df.precio_venta*cantidad) 'Total Facturado',
+sum(df.precio_venta*cantidad)/100 'Premio', 
+'Julio-Diciembre' Semestre
+from EMPLEADOS e
+join FACTURAS f on f.id_empleado=e.id_empleado
+join DETALLES_FACTURA df on df.id_factura=f.id_factura
+join SUCURSALES s on s.Id_Sucursal=f.id_sucursal
+join PERSONAS p on p.id_persona=e.id_persona
+where month(fecha_factura) in (7,8,9,10,11,12)
+group by e.id_empleado,nombre+','+apellido,nom_sucursaL
+order by 2
+
+--Consulta 3
+select p.id_producto 'Codigo',
+nombre_comercial 'Producto',
+tp.descripcion 'Tipo de Producto',
+sum(cantidad) 'Cantidad',
+sum(precio*cantidad) 'Total en pesos'
+from PRODUCTOS p 
+join STOCKS st on st.id_producto=p.id_producto
+join tipos_productos tp on tp.id_tipo_producto=p.id_tipo_producto
+group by p.id_producto,nombre_comercial,tp.descripcion
+order by 2
+
+
+--Consulta 4
+select sum(descuento_obra_social*cantidad) 'Descuento total',
+nom_obra_social 'Obra Social',
+f.id_factura 'Nro Factura',
+fecha_factura 'Fecha'
+from DESCUENTOS_OS_VIGENTES dv
+join OBRAS_SOCIALES os on os.cuit_obra_social=dv.cuit_obra_social
+join DETALLES_FACTURA df on df.id_descuento_os=dv.id_descuento_os
+join FACTURAS f on f.id_factura=df.id_factura
+where f.id_factura in (select id_factura 
+						from FACTURAS f1
+						where datediff(MONTH,fecha_factura,getdate())<=8
+						and f.id_factura=f1.id_factura)
+group by nom_obra_social,f.id_factura,fecha_factura
+
+
+
+--Consulta 5
+select p.id_producto 'Codigo',
+nombre_comercial 'Producto',
+cod_barras 'Codigo de Barras',
+lote 'Lote Producto',
+sum(precio_compra*doc.cantidad) 'Perdida por Baja ',
+st.vencimiento 'Fecha de vencimiento',
+'Fecha Caduca' 'Tipo de vencimiento'
+from PRODUCTOS p
+join DETALLE_OC doc on doc.id_producto=p.id_producto
+join STOCKS st on st.id_producto=p.id_producto
+where st.vencimiento<=GETDATE()
+group by p.id_producto,nombre_comercial,cod_barras,lote,st.vencimiento
+union 
+select p.id_producto ,
+nombre_comercial,
+cod_barras ,
+lote ,
+sum(precio_compra*doc.cantidad),
+st.vencimiento ,
+'A 1 año' 
+from PRODUCTOS p
+join DETALLE_OC doc on doc.id_producto=p.id_producto
+join STOCKS st on st.id_producto=p.id_producto
+where datediff(year,st.vencimiento,getdate())>=-1
+group by p.id_producto,nombre_comercial,cod_barras,lote,st.vencimiento
+order by 1
+
+--Consulta 6
+select s.nom_sucursal 'sucursal', t.descripcion 'tipo producto', sum(df.id_producto)'cantidad de ventas', sum(precio_venta*cantidad) /count(distinct f.id_factura) 'Promedio de venta'
+from SUCURSALES s join facturas f on f.id_sucursal=s.Id_Sucursal
+join DETALLES_FACTURA df on df.id_factura=f.id_factura
+join PRODUCTOS p on p.id_producto=df.id_producto
+join tipos_productos t on t.id_tipo_producto=p.id_tipo_producto
+where year(f.fecha_factura)=2022 
+and p.descripcion LIKE '[C-G]%'
+group by s.nom_sucursal , t.descripcion
+order by 2
+
+--Consulta 7
+Select descripcion 'Nombre', 'No se vendio 2022' Tipo
+From PRODUCTOS
+Where id_producto not in (select id_producto
+From FACTURAS f join DETALLES_FACTURA df on df.id_factura=f.id_factura
+Where datediff(month,fecha_factura,getdate())=1)
+Union
+Select descripcion , 'No se vendio 2021' 
+From PRODUCTOS p 
+Where id_producto not in (select df.id_producto
+							From FACTURAS f join DETALLES_FACTURA df on df.id_factura=f.id_factura
+							Where datediff(month,f.fecha_factura,getdate())=1
+							and year(f.fecha_factura)=year(getdate())-1
+							and id_producto= df.id_producto)
+order by 2
+
+--Consulta 8
+--se acerca el aniversario de la empresa, y el festejo será a lo grande. 
+--Se entregarán premios a los clientes que más hayan concurrido en los
+--últimos doce meses, y a los vendedores que más cantidad de ventas posean en
+--el mismo periodo. Se necesita mostrar esos listados con sus respectivos 
+--subtotales, y alguna forma de contacto para comunicarles el premio.
+
+Select top 5 count(f.id_factura) cantidad, p.apellido+', '+p.nombre Nombre, sum(df.precio_venta*cantidad) Total,
+p.telefono Teléfono, p.mail Email, 'Cliente' Tipo
+from clientes c join facturas f on f.id_cliente=c.id_cliente
+join DETALLES_FACTURA df on df.id_factura=f.id_factura
+join personas p on c.id_persona=p.id_persona
+where DATEDIFF(month, fecha_factura,getdate())<=12
+group by p.apellido+', '+p.nombre, p.telefono, p.mail 
+union
+select top 5 count(f.id_factura), p.apellido+', '+p.nombre Nombre, sum(df.precio_venta*cantidad),
+p.telefono, p.mail, 'Vendedor'
+from EMPLEADOS e join facturas f on f.id_empleado=e.id_empleado
+join DETALLES_FACTURA df on df.id_factura=f.id_factura
+join personas p on e.id_persona=p.id_persona 
+where DATEDIFF(month, fecha_factura,getdate())<=12
+group by p.apellido+', '+p.nombre, p.telefono, p.mail
+order by 1 desc
+
+
+--Consulta 9
+--Cual es la Obra social que más clientes atendemos, en los últimos 3 meses,  
+--para saber a cuál apuntar para hacer mejores convenios para ofrecer mejores descuentos y 
+--así llamar a más cantidad de clientes. Y también en ese mismo grupo que tipo de productos 
+--son los que más consumen.  
+Select count(f.id_factura) cantidad, p.apellido+', '+p.nombre Nombre, sum(df.precio_venta*cantidad) Total,
+p.telefono Teléfono, p.mail Email, 'Cliente' Tipo
+from clientes c join facturas f on f.id_cliente=c.id_cliente
+join DETALLES_FACTURA df on df.id_factura=f.id_factura
+join personas p on c.id_persona=p.id_persona
+where DATEDIFF(month, fecha_factura,getdate())<=12
+group by p.apellido+', '+p.nombre, p.telefono, p.mail 
+union
+select count(f.id_factura), p.apellido+', '+p.nombre Nombre, sum(df.precio_venta*cantidad),
+p.telefono, p.mail, 'Vendedor'
+from EMPLEADOS e join facturas f on f.id_empleado=e.id_empleado
+join DETALLES_FACTURA df on df.id_factura=f.id_factura
+join personas p on e.id_persona=p.id_persona 
+where DATEDIFF(month, fecha_factura,getdate())<=12
+group by p.apellido+', '+p.nombre, p.telefono, p.mail 
+order by 6 desc, 5 desc
+
+
+
+
+
+--Consulta 10
+Select  apellido +' '+ nombre 'Empleado', 'No vendió este mes en curso' Tipo
+From EMPLEADOS e join PERSONAS p on p.id_persona=e.id_persona
+where id_empleado not in (select id_empleado
+                          From FACTURAS
+                          Where datediff(month,fecha_factura,getdate())=1)
+UNION
+Select  apellido +' '+ nombre, 'No vendió este mes en el año pasado'
+From EMPLEADOS e join PERSONAS p on p.id_persona=e.id_persona
+where id_empleado not in (select id_empleado
+                          From FACTURAS f
+                          Where datediff(month,f.fecha_factura,getdate())=1
+                          and year(f.fecha_factura)=year(getdate())-1)
+order by 2
 
 
