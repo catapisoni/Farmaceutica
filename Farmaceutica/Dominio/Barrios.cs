@@ -8,7 +8,7 @@ namespace Farmaceutica.Dominio
 {
     internal class Barrios
     {
-        public int IdBarrio { get; set; }
+        public int IdBarrio { get; set; }//este es el id del barrio 
         public string NombreBarrio { get; set; }
 
         public Localidades IdLocalidadBarrios { get; set; }
