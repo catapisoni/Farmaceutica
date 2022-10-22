@@ -41,11 +41,12 @@
             // 
             this.lblCodEmpleado.AutoSize = true;
             this.lblCodEmpleado.BackColor = System.Drawing.Color.Transparent;
-            this.lblCodEmpleado.Font = new System.Drawing.Font("Rubik", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodEmpleado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblCodEmpleado.Location = new System.Drawing.Point(24, 70);
+            this.lblCodEmpleado.Location = new System.Drawing.Point(19, 56);
+            this.lblCodEmpleado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCodEmpleado.Name = "lblCodEmpleado";
-            this.lblCodEmpleado.Size = new System.Drawing.Size(303, 20);
+            this.lblCodEmpleado.Size = new System.Drawing.Size(277, 17);
             this.lblCodEmpleado.TabIndex = 0;
             this.lblCodEmpleado.Text = "INGRESE CÓDIGO PARA EMPLEADO";
             // 
@@ -53,36 +54,40 @@
             // 
             this.lblCodGerente.AutoSize = true;
             this.lblCodGerente.BackColor = System.Drawing.Color.Transparent;
-            this.lblCodGerente.Font = new System.Drawing.Font("Rubik", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodGerente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCodGerente.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblCodGerente.Location = new System.Drawing.Point(24, 209);
+            this.lblCodGerente.Location = new System.Drawing.Point(19, 167);
+            this.lblCodGerente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCodGerente.Name = "lblCodGerente";
-            this.lblCodGerente.Size = new System.Drawing.Size(289, 20);
+            this.lblCodGerente.Size = new System.Drawing.Size(267, 17);
             this.lblCodGerente.TabIndex = 1;
             this.lblCodGerente.Text = "INGRESE CÓDIGO PARA GERENTE";
             // 
             // txtCodEmpleado
             // 
-            this.txtCodEmpleado.Location = new System.Drawing.Point(347, 70);
+            this.txtCodEmpleado.Location = new System.Drawing.Point(300, 56);
+            this.txtCodEmpleado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCodEmpleado.Name = "txtCodEmpleado";
-            this.txtCodEmpleado.Size = new System.Drawing.Size(367, 22);
+            this.txtCodEmpleado.Size = new System.Drawing.Size(272, 20);
             this.txtCodEmpleado.TabIndex = 2;
             // 
             // txtCodGerente
             // 
-            this.txtCodGerente.Location = new System.Drawing.Point(347, 207);
+            this.txtCodGerente.Location = new System.Drawing.Point(300, 166);
+            this.txtCodGerente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCodGerente.Name = "txtCodGerente";
-            this.txtCodGerente.Size = new System.Drawing.Size(367, 22);
+            this.txtCodGerente.Size = new System.Drawing.Size(272, 20);
             this.txtCodGerente.TabIndex = 3;
             // 
             // btnInicioEmpleado
             // 
             this.btnInicioEmpleado.BackColor = System.Drawing.Color.Teal;
-            this.btnInicioEmpleado.Font = new System.Drawing.Font("Rubik", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInicioEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInicioEmpleado.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnInicioEmpleado.Location = new System.Drawing.Point(582, 111);
+            this.btnInicioEmpleado.Location = new System.Drawing.Point(466, 89);
+            this.btnInicioEmpleado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnInicioEmpleado.Name = "btnInicioEmpleado";
-            this.btnInicioEmpleado.Size = new System.Drawing.Size(132, 32);
+            this.btnInicioEmpleado.Size = new System.Drawing.Size(106, 26);
             this.btnInicioEmpleado.TabIndex = 4;
             this.btnInicioEmpleado.Text = "Iniciar Sesion";
             this.btnInicioEmpleado.UseVisualStyleBackColor = false;
@@ -91,11 +96,12 @@
             // btnInicioGerente
             // 
             this.btnInicioGerente.BackColor = System.Drawing.Color.Teal;
-            this.btnInicioGerente.Font = new System.Drawing.Font("Rubik", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInicioGerente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInicioGerente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnInicioGerente.Location = new System.Drawing.Point(582, 250);
+            this.btnInicioGerente.Location = new System.Drawing.Point(466, 200);
+            this.btnInicioGerente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnInicioGerente.Name = "btnInicioGerente";
-            this.btnInicioGerente.Size = new System.Drawing.Size(132, 32);
+            this.btnInicioGerente.Size = new System.Drawing.Size(106, 26);
             this.btnInicioGerente.TabIndex = 5;
             this.btnInicioGerente.Text = "Iniciar Sesion";
             this.btnInicioGerente.UseVisualStyleBackColor = false;
@@ -103,11 +109,11 @@
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(766, 331);
+            this.ClientSize = new System.Drawing.Size(613, 265);
             this.Controls.Add(this.btnInicioGerente);
             this.Controls.Add(this.btnInicioEmpleado);
             this.Controls.Add(this.txtCodGerente);
@@ -115,6 +121,7 @@
             this.Controls.Add(this.lblCodGerente);
             this.Controls.Add(this.lblCodEmpleado);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Login";
             this.Text = "Farmaceutica/Inicio";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -183,11 +183,11 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 169);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 169);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(884, 291);
+            this.dataGridView1.Size = new System.Drawing.Size(897, 291);
             this.dataGridView1.TabIndex = 14;
             // 
             // btnAgregar
@@ -207,7 +207,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.Teal;
             this.btnCancelar.Font = new System.Drawing.Font("Rubik", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCancelar.Location = new System.Drawing.Point(29, 470);
+            this.btnCancelar.Location = new System.Drawing.Point(12, 470);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(149, 35);
             this.btnCancelar.TabIndex = 16;
@@ -267,7 +267,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SistemaVentas";
-            this.Text = "Farmaceutica/Empleado";
+            this.Text = "Farmaceutica/SistemaVentas";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -291,7 +291,7 @@
         private System.Windows.Forms.TextBox txtComprobante;
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cboSucursal;
+        public System.Windows.Forms.ComboBox cboSucursal;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnCancelar;

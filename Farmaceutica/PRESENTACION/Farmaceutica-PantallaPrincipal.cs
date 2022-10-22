@@ -17,10 +17,7 @@ namespace Farmaceutica
             InitializeComponent();
         }
 
-        private void Form3_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -8,18 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Farmaceutica
 {
     public partial class SistemaVentas : Form
     {
+        
         public SistemaVentas()
         {
             InitializeComponent();
+            
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -38,6 +41,7 @@ namespace Farmaceutica
             }
         }
 
+     
         public void Limpiar()
         {
             txtComprobante.Text = "";
