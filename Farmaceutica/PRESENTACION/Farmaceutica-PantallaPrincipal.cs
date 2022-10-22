@@ -23,7 +23,6 @@ namespace Farmaceutica
         {
             new Login().ShowDialog();
         }
-
         private void sALIRToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Seguro que desea salir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

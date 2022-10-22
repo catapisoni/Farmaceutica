@@ -27,21 +27,48 @@ namespace Farmaceutica
 
         private void btnInicioEmpleado_Click(object sender, EventArgs e)
         {
+            string nombre = "";
+            //string sucursal = "";
+            string mensaje = "Bienvenido";
+            switch (Convert.ToInt32(txtCodEmpleado.Text))
+            {
+                
+                case 1:
 
-            if(txtCodEmpleado.Text=="2424")
+                    nombre = "Lucrecia Alvarez";//deberia venir de una carga de combo de la bd
+                    mensaje = "Bienvenido/a " + nombre;
+                    
+                    break;
+                case 2:
+
+                    nombre = "Lautaro Sosa";
+                    mensaje = "Bienvenido/a " + nombre;
+                    break;
+                case 3:
+
+                    nombre = "Pedro Robles";
+                    mensaje = "Bienvenido/a " + nombre;
+                    break;
+                case 4:
+
+                    nombre = "Lorenzo Acosta";
+                    mensaje = "Bienvenido/a " + nombre;
+                    break;
+                case 5:
+
+                    nombre = "Florencia Perez";
+                    mensaje = "Bienvenido/a " + nombre;
+                    break;
+
+            }
+            if (MessageBox.Show(mensaje, "Sign In", MessageBoxButtons.OK) == DialogResult.OK)
+            {
+                new SistemaVentas().ShowDialog();
+            }
+            if (txtCodEmpleado.Text=="2424")
             { new SistemaVentas().ShowDialog(); }
-                else if (txtCodEmpleado.Text == "2525")
-                { new SistemaVentas().ShowDialog(); }
-                    else  if (txtCodEmpleado.Text == "2626")
-                    { new SistemaVentas().ShowDialog();  }
-                        else  if (txtCodEmpleado.Text == "2727")
-                        { new SistemaVentas().ShowDialog();}
-                            else  if (txtCodEmpleado.Text == "2828")
-                            { new SistemaVentas().ShowDialog(); }
-                                else  if (txtCodEmpleado.Text == "2929")
-                                { new SistemaVentas().ShowDialog(); }
-                                    else { MessageBox.Show("Acceso Denegado, intente nuevamente", "Error", MessageBoxButtons.OK); }
-                                         LimpiarPass();
+            else { MessageBox.Show("Acceso Denegado, intente nuevamente","Error", MessageBoxButtons.OK);}
+            LimpiarPass();
         }
 
         private void btnInicioGerente_Click(object sender, EventArgs e)
